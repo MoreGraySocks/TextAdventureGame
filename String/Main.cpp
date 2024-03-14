@@ -18,7 +18,12 @@ int main() {
 
 	String* phrase2 = new String("Diamond Diamond");
 
+
+	str4->WriteToConsole();
+
 	phrase2->Replace("Diamond", "Emerald");
+	phrase2->Replace("Emerald", "Opal");
+	phrase2->Replace("Opal", "Sapphire");
 
 	cout << phrase2->str << endl;
 
@@ -27,7 +32,6 @@ int main() {
 
 	str3->WriteToConsole(); 
 	cout << str3->Length() << endl;
-	str4->WriteToConsole(); 
 
 	str2->ToLower();
 	str2->WriteToConsole();

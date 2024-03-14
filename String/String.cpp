@@ -62,16 +62,16 @@ String& String::Prepend(const String& _str) {
 	return *this;
 }
 
-const char* String::CStr() const { 
+const char* String::CStr() const {
 
 	string input = this->str;
-	char* output = new char[this->Length()+1];
+	char* output = new char[this->Length() + 1];
 	output[this->Length()] = '\0';
 	for (int i = 0; i < this->Length(); i++) {
 		output[i] = input[i];
 	}
 
-	return output;                    //Return the const char * that is useable with std::cout. eg: std::cout << str1.cstr() << std::endl;
+	return output;
 }
 
 String& String::ToLower() {
@@ -131,7 +131,7 @@ size_t String::Find(const String& _str) {
 }
 
 size_t String::Find(size_t _startIndex, const String& _str) {              
-	                                                         //Returns the location of the str. Beginning the search from startIndex. If not found, return -1
+	                                                         
 	bool counting = false;
 	int counter = 0;
 	for (int i = _startIndex; i < this->Length(); i++) {
@@ -164,32 +164,83 @@ size_t String::Find(size_t _startIndex, const String& _str) {
 	return -1;
 }
 
-String& String::Replace(const String& _find, const String& _replace) {         //use find function to find index, replace all found words with desired string
+String& String::Replace(const String& _find, const String& _replace) {         
 	
-	const int LENGTH = this->Length();
-	//char* bufferStr[LENGTH];
+	int counter = 0;
+	int findCounter = 0;
 
 	for (int i = 0; i < this->Length(); i++) {
 
-		if (Find(i, _find) == -1) {
-			break;
+		if (Find(i, _find) != -1) {
+			findCounter++;
+			i += _find.Length();
 		}
-		else {
-
-			if (_find.Length() == _replace.Length()) {
-				int counter = Find(i, _find);
-				for (int i2 = 0; i2 < _replace.Length(); i2++) {
-					this->str[counter] = _replace[i2];
-					counter++;
-				}
-			}
-			else {
-
-			}
-			
-		}
-
 	}
+
+	int loopCounter = 0;
+
+	while (loopCounter < findCounter) {
+		int len = this->Length() - _find.Length() + _replace.Length();
+
+		string beforeFind;
+		string afterFind;
+
+		for (int i2 = 0; i2 < Find(_find); i2++) {
+			beforeFind += this->str[i2];
+		}
+
+		counter = 0;
+		for (int i2 = Find(_find) + _find.Length(); i2 < this->Length(); i2++) {
+			afterFind += this->str[i2];
+			counter++;
+		}
+
+		this->str = beforeFind + _replace.str + afterFind;
+		loopCounter++;
+	}
+
+	//for (int i = 0; i < this->Length(); i++) {
+
+	//	if (Find(i, _find) == -1) {
+	//		break;
+	//	}
+	//	else {
+
+	//if (_find.Length() == _replace.Length()) {
+	//	counter = Find(i, _find);
+	//	for (int i2 = 0; i2 < _replace.Length(); i2++) {
+	//		this->str[counter] = _replace[i2];
+	//		counter++;
+	//	}
+	//}
+	//else {
+				
+
+	//counter = 0;
+
+	//for (int i2 = 0; i2 < len; i2++) {
+	//	if (i2 == Find(i, _find)) {
+	//		for (int i3 = 0; i3 < _replace.Length(); i3++) {
+	//			bufferStr->str[i2] = _replace[i3];
+	//			i2++;
+	//		}
+	//		counter += Find(i, _find) + _find.Length();
+	//	}
+	//	else {
+	//		bufferStr->str[i2] = this->str[counter];
+	//		counter++;
+	//		
+	//	}
+	//}
+	//this->str = bufferStr->str;
+
+	//}
+			
+	//	}
+
+	//}
+
+	//this->str = bufferStr;
 
 	return *this;
 }
@@ -218,10 +269,6 @@ bool String::operator==(const String& _other) {
 bool String::operator!=(const String& _other) {
 	return !EqualTo(_other);
 }
-
-//String& String::operator=(const String& _str) {          // reference replace function
-//	return Replace(this->str, _str)
-//}  
 
 char& String::operator[](size_t _index) {             
 
