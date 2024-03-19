@@ -1,4 +1,6 @@
 #pragma once
+#include "GameDefines.h"
+
 class Game
 {
 public:
@@ -9,11 +11,11 @@ public:
 	void Update();
 	bool IsGameOver();
 
+	int GetCommand();
 private:
 
 	void DrawMap();
 
-	int GetCommand();
 
 	void Save();
 	bool Load();
