@@ -12,9 +12,7 @@ int main() {
 	//StringTest test;
 	//test.TestStringClass();
 	Game game;
-	Player player;
-	int command = game.GetCommand();
-
-	player.ExecuteCommand(command, game.m_savedInput);
+	
+	game.Update();
 
 }

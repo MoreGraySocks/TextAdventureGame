@@ -4,8 +4,8 @@
 class Room
 {
 public:
-	Room() : m_mapPosition{ 0,0 } {}
-	Room(Point2D position) : m_mapPosition{ position } {}
+	Room() : m_mapPosition{ 0,0 }, canMoveNorth{ false }, canMoveEast{ false }, canMoveWest{ false }, canMoveSouth{ false } {}
+	Room(Point2D position);
 	~Room() {}
 
 	void SetPosition(Point2D position) { m_mapPosition = position; }
@@ -15,6 +15,11 @@ public:
 
 public:
 	Point2D m_mapPosition;
+
+	bool canMoveNorth;
+	bool canMoveEast;
+	bool canMoveWest;
+	bool canMoveSouth;
 
 	/* Finished Map
 	

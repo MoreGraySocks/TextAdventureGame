@@ -14,6 +14,8 @@ void Torch::Use() {
 		std::cout << "You used your " << RED << "Flame" << RESET_COLOUR << " spell to light the torch" << std::endl;
 		m_isLit = true;
 	}
+	else {
 
+	}
 
 }
