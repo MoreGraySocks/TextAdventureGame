@@ -1,5 +1,6 @@
 #pragma once
 #include "GameDefines.h"
+#include "String.h"
 
 class Game
 {
@@ -16,12 +17,12 @@ private:
 
 	void DrawMap();
 
+	void SaveInput(String input) { m_savedInput = input; }
 
-	void Save();
-	bool Load();
+public:
+	String m_savedInput;
 
 private:
-	
 	bool m_gameOver;
 };
 

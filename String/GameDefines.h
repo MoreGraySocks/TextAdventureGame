@@ -40,8 +40,9 @@ const int WEST = 4;
 const int SOUTH = 2;
 
 const int HELP = 1;         //get a hint on where to go next
+const int FIND_SPELL = 3;    //used to find a certain spell (for assessment)
 
-const int USE = 9;              //use and item from your inventory or in the world
+const int USE = 9;               //use and item from your inventory or in the world
 const int PICKUP = 10;           //pick up an item from the room you are in
 const int DROP = 11;             //drop an item 
 const int LOOKAT = 12;           //get a description of things
@@ -49,6 +50,7 @@ const int TALK = 13;             //talk to the monster
 const int INVENTORY = 14;        //view the items in your inventory
 const int SPELLBOOK = 15;        //view the spells you have access to
 const int HINT = 16;             //shows a list of commands
+const int QUIT = 17;             //exits the game
 
 
 

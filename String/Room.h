@@ -1,10 +1,20 @@
 #pragma once
+#include "Point2D.h"
 
 class Room
 {
+public:
+	Room() : m_mapPosition{ 0,0 } {}
+	Room(Point2D position) : m_mapPosition{ position } {}
+	~Room() {}
 
-	Room();
-	~Room();
+	void SetPosition(Point2D position) { m_mapPosition = position; }
+	Point2D GetPosition() { return m_mapPosition; }
+
+	void Description();
+
+public:
+	Point2D m_mapPosition;
 
 	/* Finished Map
 	
