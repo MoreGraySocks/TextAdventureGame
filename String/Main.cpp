@@ -16,4 +16,6 @@ int main() {
 	while (game.IsGameOver() == false) {
 		game.Update();
 	}
+
+	//done
 }
