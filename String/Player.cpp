@@ -126,7 +126,7 @@ void Player::ExecuteCommand(int command, String input, Room rooms[MAP_WIDTH][MAP
 			break;
 		case FLAME:
 			if (m_position.x == KITCHEN.x && m_position.y == KITCHEN.y && !rooms[KITCHEN.x][KITCHEN.y].cookpotLit) {
-				std::cout << CYAN_ << "You used your "<<RED<<"Flame"<<RESET_COLOUR<<" spell to light the cookpot" << RESET_COLOUR << std::endl;
+				std::cout << CYAN_ << "You used your "<<RED<<"Flame"<<CYAN_<<" spell to light the cookpot" << RESET_COLOUR << std::endl;
 				rooms[KITCHEN.x][KITCHEN.y].cookpotLit = true;
 			}
 			break;

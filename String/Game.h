@@ -18,7 +18,6 @@ public:
 
 private:
 	void InitialiseRooms();
-	void DrawMap();
 
 	int GetCommand();
 
