@@ -8,15 +8,12 @@ using namespace std;
 
 int main() {
 
-	cout << "Hello World\n" << endl;
-	StringTest test;
-	test.TestStringClass();
-	test.WriteTestResultsToFile();
-	/*Game game;
+	
+	Game game;
 
 	game.StartUp();
 	
 	while (game.IsGameOver() == false) {
 		game.Update();
-	}*/
+	}
 }
