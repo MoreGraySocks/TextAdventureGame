@@ -1,6 +1,13 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "StringTest.h"
 #include "String.h"
 #include <iostream>
+#include <fstream>
+#include <windows.h>
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <time.h> 
+#include <chrono> 
 
 StringTest::StringTest() {}
 StringTest::~StringTest() {}
@@ -21,6 +28,16 @@ void StringTest::TestStringClass() {
 	String* phrase = new String("I am a Diamond");
 
 	String* phrase2 = new String("Diamond Diamond");
+
+	testLength = false;
+	testCharacterAt = false;
+	testFind = false;
+	testReplace = false;
+	testToLowerToUpper = false;
+	testEqualTo = false;
+	testAppendPrepend = false;
+	testCStr = false;
+	testReadFromConsole = false;
 
 	cout << "strings:" << endl;
 	str1->WriteToConsole();        //testing constructors //testing write to console
@@ -88,7 +105,17 @@ void StringTest::TestStringClass() {
 
 	input->ToLower();
 	if (input->str == "true" || input->str == "t") { testReadFromConsole = true; }
+	/*time_t now = time(NULL);
+	String time;
+	time.str = printf("%s", ctime(&now));*/
 
+	auto start = chrono::system_clock::now();
+    auto end = chrono::system_clock::now();
+ 
+    time_t end_time = chrono::system_clock::to_time_t(end);
+ 
+
+	cout << "Test completed: " << ctime(&end_time) << endl;
 	cout << "The test results are: (0 = failure, 1 = success)" << endl;
 	cout << "Length:" << testLength << endl;
 	cout << "Character At:" << testCharacterAt << endl;
@@ -99,6 +126,20 @@ void StringTest::TestStringClass() {
 	cout << "Append and Prepend:" << testAppendPrepend << endl;
 	cout << "C String:" << testCStr << endl;
 	cout << "Read From Console:" << testReadFromConsole << endl;
+
+	float counter = 0;
+	if (testLength) { counter++; }
+	if (testCharacterAt) { counter++; }
+	if (testFind) { counter++; }
+	if (testReplace) { counter++; }
+	if (testToLowerToUpper) { counter++; }
+	if (testEqualTo) { counter++; }
+	if (testAppendPrepend) { counter++; }
+	if (testCStr) { counter++; }
+	if (testReadFromConsole) { counter++; }
+
+	testPercentage = (counter / 9) * 100;
+	cout << testPercentage << "% Success" << endl;
 
 	//remember assign to nullptr & delete
 	str1 = nullptr;
@@ -120,5 +161,45 @@ void StringTest::TestStringClass() {
 }
 
 void StringTest::WriteTestResultsToFile() {
+	std::ofstream out;
+	out.open("string_test_results.txt", std::ios::app);
 
+	if (out.is_open()) {
+		auto start = chrono::system_clock::now();
+		auto end = chrono::system_clock::now();
+
+		time_t end_time = chrono::system_clock::to_time_t(end);
+
+
+		out << "\nTest completed: " << ctime(&end_time);
+		out << "The test results are: (0 = failure, 1 = success)" << endl;
+		out << "Length:" << testLength << endl;
+		out << "Character At:" << testCharacterAt << endl;
+		out << "Find:" << testFind << endl;
+		out << "Replace:" << testReplace << endl;
+		out << "To Lower and To Upper:" << testToLowerToUpper << endl;
+		out << "Equal To:" << testEqualTo << endl;
+		out << "Append and Prepend:" << testAppendPrepend << endl;
+		out << "C String:" << testCStr << endl;
+		out << "Read From Console:" << testReadFromConsole << endl;
+
+		float counter = 0;
+		if (testLength) { counter++; }
+		if (testCharacterAt) { counter++; }
+		if (testFind) { counter++; }
+		if (testReplace) { counter++; }
+		if (testToLowerToUpper) { counter++; }
+		if (testEqualTo) { counter++; }
+		if (testAppendPrepend) { counter++; }
+		if (testCStr) { counter++; }
+		if (testReadFromConsole) { counter++; }
+
+		testPercentage = (counter / 9) * 100;
+		out << testPercentage << "% Success" << endl;
+	}
+	else {
+		cout << "Could not save to file" << endl;
+	}
+	out.flush();
+	out.close();
 }

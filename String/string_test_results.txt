@@ -1,0 +1,26 @@
+
+Test completed: Thu Mar 21 23:01:42 2024
+The test results are: (0 = failure, 1 = success)
+Length:1
+Character At:1
+Find:1
+Replace:1
+To Lower and To Upper:1
+Equal To:1
+Append and Prepend:1
+C String:1
+Read From Console:1
+100% Success
+
+Test completed: Thu Mar 21 23:03:12 2024
+The test results are: (0 = failure, 1 = success)
+Length:1
+Character At:1
+Find:1
+Replace:1
+To Lower and To Upper:1
+Equal To:1
+Append and Prepend:1
+C String:1
+Read From Console:0
+88% Success

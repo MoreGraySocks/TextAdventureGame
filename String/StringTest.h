@@ -10,14 +10,16 @@ public:
 	void WriteTestResultsToFile();
 
 private:
-	bool testLength = false;
-	bool testCharacterAt = false;
-	bool testFind = false;
-	bool testReplace = false;
-	bool testToLowerToUpper = false;
-	bool testEqualTo = false;
-	bool testAppendPrepend = false;
-	bool testCStr = false;
-	bool testReadFromConsole = false;
+	bool testLength;
+	bool testCharacterAt;
+	bool testFind;
+	bool testReplace;
+	bool testToLowerToUpper;
+	bool testEqualTo;
+	bool testAppendPrepend;
+	bool testCStr;
+	bool testReadFromConsole;
+
+	int testPercentage;
 };
 
