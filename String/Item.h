@@ -9,7 +9,7 @@ public:
 	Item(Point2D position);
 	~Item();
 
-	void Description() = 0;
-	virtual void Use() = 0;
+	void Description();
+	virtual bool Use(Room rooms[MAP_WIDTH][MAP_HEIGHT], Point2D playerPos) = 0;
 };
 

@@ -3,6 +3,9 @@
 #include "String.h"
 #include "Room.h"
 #include "Torch.h"
+#include "Soup.h"
+#include "Potato.h"
+#include "Meat.h"
 
 class Player : public GameObject
 {
@@ -14,10 +17,6 @@ public:
 
 	void Description();
 
-	void AddTorch() { hasTorch = true; }
-	void AddPotato() { hasPotato = true; }
-	void AddMeat() { hasMeat = true; }
-
 	bool SearchForSpell(String input);
 
 public:
@@ -27,8 +26,17 @@ public:
 	bool hasSoup;
 	bool hasPotato;
 	bool hasMeat;
+	bool hasKey;
+	bool bedroomUnlocked;
+	bool exitUnlocked;
+
+	bool dialogue1;
+	bool dialogue2;
 
 	Torch* torch;
+	Soup* soup;
+	Potato* potato;
+	Meat* meat;
 
 };
 

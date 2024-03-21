@@ -131,7 +131,9 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Meat.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Potato.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Soup.cpp" />
     <ClCompile Include="Spell.cpp" />
@@ -144,8 +146,10 @@
     <ClInclude Include="GameDefines.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Meat.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point2D.h" />
+    <ClInclude Include="Potato.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Soup.h" />
     <ClInclude Include="Spell.h" />

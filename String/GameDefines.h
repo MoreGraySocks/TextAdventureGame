@@ -20,17 +20,14 @@ const char* const RESET_COLOUR = "\x1b[0m";
 const char* const RESET_CURSOR_POS = "\x1b[0;0H";
 
 const Point2D EXIT = { 1,0 };
-const Point2D POOL = { 0,1 };
-const Point2D START = { 1,1 };
-const Point2D OBSERVATORY = { 2,1 };
-const Point2D KITCHEN = { 0,2 };
-const Point2D PANTRY = { 0,3 };
-const Point2D STUDY = { 2,2 };
-const Point2D BEDROOM = { 2,3 };
-const Point2D HALLWAY_NORTH = { 1,2 };
-const Point2D HALLWAY_SOUTH = { 1,3 };
+const Point2D KITCHEN = { 0,1 };
+const Point2D PANTRY = { 0,2 };
+const Point2D STUDY = { 2,1 };
+const Point2D BEDROOM = { 2,2 };
+const Point2D HALLWAY_NORTH = { 1,1 };
+const Point2D HALLWAY_SOUTH = { 1,2 };
 
-const int MAP_HEIGHT = 4;
+const int MAP_HEIGHT = 3;
 const int MAP_WIDTH = 3;
 
 const int NORTH = 8;
@@ -55,7 +52,8 @@ const int TORCH = 20;
 const int POTATO = 21;
 const int MEAT = 22;
 const int SOUP = 23;
-const int FLAME = 24;
+const int KEY = 24;
+const int FLAME = 25;
 
 
 

@@ -16,6 +16,11 @@ void Soup::Description() {
 	}
 }
 
-void Soup::Use() {
+bool Soup::Use(Room rooms[MAP_WIDTH][MAP_HEIGHT], Point2D playerPos) {
 
+	if (CheckFinished()) {
+		std::cout << CYAN_ << "You gave the soup to the creature" << RESET_COLOUR << std::endl;
+		return true;
+	}
+	return false;
 }

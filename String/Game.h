@@ -13,7 +13,7 @@ public:
 public:
 	void StartUp();
 
-	void Update(Room rooms[MAP_WIDTH][MAP_HEIGHT]);
+	void Update();
 	bool IsGameOver() { return m_gameOver; }
 
 private:

@@ -16,6 +16,6 @@ int main() {
 	game.StartUp();
 	
 	while (game.IsGameOver() == false) {
-		game.Update(game.m_rooms);
+		game.Update();
 	}
 }

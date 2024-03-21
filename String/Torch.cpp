@@ -14,17 +14,21 @@ void Torch::Description(bool hasTorch) {
 	}
 }
 
-void Torch::Use(Room rooms[MAP_WIDTH][MAP_HEIGHT], Point2D playerPos) {
+bool Torch::Use(Room rooms[MAP_WIDTH][MAP_HEIGHT], Point2D playerPos) {
 	if (m_isLit == false) {
-		std::cout << "You used your " << RED << "Flame" << RESET_COLOUR << " spell to light the torch" << std::endl;
+		std::cout << CYAN_ << "You used your " << RED << "Flame" << CYAN_ << " spell to light the torch" << RESET_COLOUR << std::endl;
 		LightTorch();
+		return true;
 	}
-	else if (playerPos.x == KITCHEN.x && playerPos.y == KITCHEN.y) {
-		std::cout << "You used your torch to light the cookpot" << std::endl;
+	else if (playerPos.x == KITCHEN.x && playerPos.y == KITCHEN.y && !rooms[KITCHEN.x][KITCHEN.y].cookpotLit) {
+		std::cout << CYAN_ << "You used your torch to light the cookpot" << RESET_COLOUR << std::endl;
 		rooms[KITCHEN.x][KITCHEN.y].cookpotLit = true;
+		return true;
+	}
 	}
 	else {
 		std::cout << "I don't think your torch would be useful here" << std::endl;
 	}
+	return false;
 
 }

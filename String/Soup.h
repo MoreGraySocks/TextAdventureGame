@@ -11,7 +11,7 @@ public:
 	void AddMeat() { m_addedMeat = true; }
 
 	void Description();
-	void Use();
+	bool Use(Room rooms[MAP_WIDTH][MAP_HEIGHT], Point2D playerPos);
 
 	bool CheckFinished();
 

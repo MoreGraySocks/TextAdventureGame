@@ -1,14 +1,12 @@
 #pragma once
 #include "Item.h"
-
-class Potato : public Item
+class Meat : public Item
 {
 public:
-	Potato();
-	~Potato();
+	Meat();
+	~Meat();
 
-	void Description(bool hasPotato);
+	void Description();
 	bool Use(Room rooms[MAP_WIDTH][MAP_HEIGHT], Point2D playerPos);
-
 };
 

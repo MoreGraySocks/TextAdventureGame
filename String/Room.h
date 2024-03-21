@@ -1,5 +1,6 @@
 #pragma once
 #include "Point2D.h"
+#include "GameDefines.h"
 
 class Room
 {
@@ -11,7 +12,7 @@ public:
 	void SetPosition(Point2D position) { m_mapPosition = position; }
 	Point2D GetPosition() { return m_mapPosition; }
 
-	void Description(bool hasTorch, bool hasMeat, bool hasPotato, bool hasSoup);
+	void Description(bool hasTorch, bool hasPotato, bool hasMeat, bool hasSoup, bool hasKey, Room rooms[MAP_WIDTH][MAP_HEIGHT], bool exitUnlocked);
 
 public:
 	Point2D m_mapPosition;
