@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Player.h"
 #include <iostream>
 #include <string>
 
@@ -10,21 +9,54 @@ Game::Game() : m_gameOver{ false } {
 }
 Game::~Game() {}
 
-void Game::Update() {
-	Player player; 
+void Game::StartUp() {
+	InitialiseRooms();
 
-	while (IsGameOver() == false) { 
-		int command = GetCommand(); 
+	player.SetPosition(HALLWAY_NORTH);
+}
 
-		player.ExecuteCommand(command, m_savedInput); 
+void Game::Update(Room rooms[MAP_WIDTH][MAP_HEIGHT]) {
 
+	if (player.GetPosition().x == EXIT.x && player.GetPosition().y == EXIT.y) {
+		m_gameOver = true;
+		return;
 	}
+
+	m_rooms[player.GetPosition().x][player.GetPosition().y].Description(player.hasTorch, player.hasPotato, player.hasMeat, player.hasSoup);
+	int command = GetCommand(); 
+
+	if (command == QUIT) {
+		m_gameOver = true;
+		return;
+	}
+
+	player.ExecuteCommand(command, m_savedInput, rooms); 
 }
 
 void Game::InitialiseRooms() {
-	for (int i = 0; i < MAP_WIDTH; i++) {
-		for (int i2 = 0; i2 < MAP_HEIGHT; i++) {
-			m_rooms[i][i2].SetPosition(Point2D{ i,i2 });
+	for (int i2 = 0; i2 < MAP_HEIGHT; i2++) {
+		for (int i = 0; i < MAP_WIDTH; i++) {
+			m_rooms[i][i2].SetPosition(Point2D{ i,i2 }); 
+			m_rooms[i][i2].canMoveNorth = false;
+			m_rooms[i][i2].canMoveEast = false;
+			m_rooms[i][i2].canMoveWest = false;
+			m_rooms[i][i2].canMoveSouth = false;
+			if (i == START.x && i2 == START.y || i == HALLWAY_NORTH.x && i2 == HALLWAY_NORTH.y) { 
+				m_rooms[i][i2].canMoveNorth = true; 
+				m_rooms[i][i2].canMoveEast = true; 
+				m_rooms[i][i2].canMoveWest = true; 
+				m_rooms[i][i2].canMoveSouth = true; 
+			}if (i == EXIT.x && i2 == EXIT.y) { 
+				m_rooms[i][i2].canMoveSouth = true; 
+			}if (i == POOL.x && i2 == POOL.y || i == KITCHEN.x && i2 == KITCHEN.y || i == PANTRY.x && i2 == PANTRY.y) { 
+				m_rooms[i][i2].canMoveEast = true; 
+			}if (i == OBSERVATORY.x && i2 == OBSERVATORY.y || i == STUDY.x && i2 == STUDY.y || i == BEDROOM.x && i2 == BEDROOM.y) { 
+				m_rooms[i][i2].canMoveWest = true; 
+			}if (i == HALLWAY_SOUTH.x && i2 == HALLWAY_SOUTH.y) { 
+				m_rooms[i][i2].canMoveNorth = true; 
+				m_rooms[i][i2].canMoveEast = true; 
+				m_rooms[i][i2].canMoveWest = true; 
+			}
 		}
 	}
 }
@@ -36,7 +68,7 @@ void Game::DrawMap() {
 int Game::GetCommand() {
 	String input;
 
-	cout << CYAN;
+	cout << CYAN << INDENT;
 	getline(cin, input.str);
 	SaveInput(input);
 	cout << RESET_COLOUR;
@@ -73,8 +105,6 @@ int Game::GetCommand() {
 			return POTATO;
 		}if (input.Find("meat") != -1) {
 			return MEAT;
-		}if (input.Find("pot") != -1) {
-			return POT;
 		}if (input.Find("soup") != -1) {
 			return SOUP;
 		}if (input.Find("flame") != -1) {
@@ -101,6 +131,9 @@ int Game::GetCommand() {
 	}
 	if (input.Find("drop") != -1) {
 		return DROP;
+	}
+	if (input.Find("quit") != -1) {
+		return QUIT;
 	}
 
 	return 0;

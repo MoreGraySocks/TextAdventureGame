@@ -12,7 +12,10 @@ int main() {
 	//StringTest test;
 	//test.TestStringClass();
 	Game game;
-	
-	game.Update();
 
+	game.StartUp();
+	
+	while (game.IsGameOver() == false) {
+		game.Update(game.m_rooms);
+	}
 }
