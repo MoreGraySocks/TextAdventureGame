@@ -26,6 +26,10 @@ void Game::Update() {
 	}
 
 	m_rooms[player.GetPosition().x][player.GetPosition().y].Description(player.hasTorch, player.hasPotato, player.hasMeat, player.hasSoup, player.hasKey, m_rooms, player.exitUnlocked);
+
+	if (player.soup->CheckFinished() && !player.hasSoup && !player.exitUnlocked) {
+		cout << "The soup is ready!" << endl;
+	}
 	int command = GetCommand(); 
 
 	if (command == QUIT) {
@@ -65,10 +69,6 @@ void Game::InitialiseRooms() {
 	}
 }
 
-void Game::DrawMap() {
-
-}
-
 int Game::GetCommand() {
 	String input;
 
@@ -83,23 +83,17 @@ int Game::GetCommand() {
 		return HELP;
 	}
 	if (input.Find("move") != -1) {
-		//cout << "move received" << endl;
 		if (input.Find("north") != -1) {
-			//cout << "You chose to move north" << endl;
 			return NORTH;
 		}if (input.Find("east") != -1) {
-			//cout << "You chose to move east" << endl;
 			return EAST;
 		}if (input.Find("west") != -1) {
-			//cout << "You chose to move west" << endl;
 			return WEST;
 		}if (input.Find("south") != -1) {
-			//cout << "You chose to move south" << endl;
 			return SOUTH;
 		}
 	}
 	if (input.Find("use") != -1) {
-		//return USE;
 		if (input.Find("torch") != -1) {
 			return TORCH;
 		}if (input.Find("potato") != -1) {

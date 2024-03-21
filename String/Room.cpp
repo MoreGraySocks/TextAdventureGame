@@ -3,27 +3,12 @@
 
 using namespace std;
 
-Room::Room(Point2D position) : m_mapPosition{ position } {
-	//if (position.x == START.x && position.y == START.y || position.x == HALLWAY_NORTH.x && position.y == HALLWAY_NORTH.y || position.x == HALLWAY_SOUTH.x && position.y == HALLWAY_SOUTH.y) {
-	//	canMoveNorth = true;
-	//	canMoveEast = true;
-	//	canMoveWest = true;
-	//	canMoveSouth = true;
-	//}if (position.x == EXIT.x && position.y == EXIT.y) {
-	//	canMoveSouth = true;
-	//}if (position.x == POOL.x && position.y == POOL.y || position.x == KITCHEN.x && position.y == KITCHEN.y || position.x == PANTRY.x && position.y == PANTRY.y) {
-	//	canMoveEast = true;
-	//}if (position.x == OBSERVATORY.x && position.y == OBSERVATORY.y || position.x == STUDY.x && position.y == STUDY.y || position.x == BEDROOM.x && position.y == BEDROOM.y) {
-	//	canMoveWest = true;
-	//}if (position.x == GARDEN.x && position.y == GARDEN.y) {
-	//	canMoveNorth = true;
-	//}
-}
+Room::Room(Point2D position) : m_mapPosition{ position } {}
 
 void Room::Description(bool hasTorch, bool hasPotato, bool hasMeat, bool hasSoup, bool hasKey, Room rooms[MAP_WIDTH][MAP_HEIGHT], bool exitUnlocked) {
 	if (m_mapPosition.x == KITCHEN.x && m_mapPosition.y == KITCHEN.y) {
 		cout << "You see a dusty kitchen before you; the left wall seems to have fallen victim to a cave-in" << endl;
-		if (rooms[KITCHEN.x][KITCHEN.y].cookpotLit) {
+		if(rooms[KITCHEN.x][KITCHEN.y].cookpotLit) {
 			cout << "the warm light and the bubbing cookpot bring a little bit more life to the room" << endl;
 		}
 		else { cout << "A cookpot full of water sits in an unlit fireplace at the far end" << endl; }

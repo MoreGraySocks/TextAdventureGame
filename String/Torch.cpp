@@ -25,7 +25,6 @@ bool Torch::Use(Room rooms[MAP_WIDTH][MAP_HEIGHT], Point2D playerPos) {
 		rooms[KITCHEN.x][KITCHEN.y].cookpotLit = true;
 		return true;
 	}
-	}
 	else {
 		std::cout << "I don't think your torch would be useful here" << std::endl;
 	}

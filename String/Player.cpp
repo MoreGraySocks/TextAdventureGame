@@ -39,7 +39,7 @@ void Player::ExecuteCommand(int command, String input, Room rooms[MAP_WIDTH][MAP
 		case HELP:
 			cout << YELLOW<<"Commands:\nMove (cardinal direction): Moves the character\nUse (item/spell): Uses an item in your inventory" << endl;
 			cout << "Pick up (item): Picks up an item in the current room\nLook at (item): Describes an item in your inventory or the room" << endl;
-			cout << "Talk: Talks to the creature in the starting room\nQuit: Ends the game" << endl;
+			cout << "Talk: Talks to the creature in the starting room\nQuit: Ends the game\nHelp: Shows the Command list" << endl;
 			cout << "Inventory: Lists the current items in your inventory\nSpellbook: Lists the spells in your spellbook" <<RESET_COLOUR<< endl;
 			break;
 		case NORTH:
@@ -114,8 +114,8 @@ void Player::ExecuteCommand(int command, String input, Room rooms[MAP_WIDTH][MAP
 					cout << "The yeti guy seems pleased as he stomps over to his bedroom, slurping his soup" << endl;
 					cout << CYAN_ << "The exit is now unblocked" << RESET_COLOUR << endl;
 					exitUnlocked = true;
+					hasSoup = false;
 				}
-
 			}
 			break;
 		case KEY:
@@ -154,6 +154,10 @@ void Player::ExecuteCommand(int command, String input, Room rooms[MAP_WIDTH][MAP
 					cout << CYAN_ << "You picked up the key" << RESET_COLOUR << endl;
 					hasKey = true;
 				}
+				if (input.Find("book") != -1) {
+					cout << CYAN_ << "You move the book on the desk and find a key sitting underneath" << RESET_COLOUR << endl;
+					hasKey = true;
+				}
 			}
 			else if (m_position.x == KITCHEN.x && m_position.y == KITCHEN.y && !hasSoup && soup->CheckFinished()) {
 				if (input.Find("soup") != -1) {
@@ -173,6 +177,7 @@ void Player::ExecuteCommand(int command, String input, Room rooms[MAP_WIDTH][MAP
 			}
 			else if (!hasPotato && input.Find("sack") != -1 && m_position.x == PANTRY.x && m_position.y == PANTRY.y) {
 				cout << CYAN_ << "You go through one of the sacks and find a potato!" << RESET_COLOUR << endl;
+				hasPotato = true;
 			}
 			else if (hasMeat && input.Find("meat") != -1 || !hasMeat && input.Find("meat") != -1 && m_position.x == BEDROOM.x && m_position.y == BEDROOM.y) {
 				meat->Description();
@@ -183,6 +188,7 @@ void Player::ExecuteCommand(int command, String input, Room rooms[MAP_WIDTH][MAP
 			else if (!hasKey && input.Find("book") != -1 && m_position.x == STUDY.x && m_position.y == STUDY.y 
 				|| !hasKey && input.Find("desk") != -1 && m_position.x == STUDY.x && m_position.y == STUDY.y) {
 				cout << CYAN_ << "You move the book on the desk and find a key sitting underneath" << RESET_COLOUR << endl;
+				hasKey = true;
 			}
 			else if (hasKey && input.Find("key") != -1 || !hasKey && m_position.x == STUDY.x && m_position.y == STUDY.y) {
 				cout << "A slightly rusty key" << endl;
@@ -194,22 +200,25 @@ void Player::ExecuteCommand(int command, String input, Room rooms[MAP_WIDTH][MAP
 			}
 			break;
 		case TALK:
-			if (!dialogue1) {
-				cout << CYAN_ << "You ask about where you are and how to leave" << endl;
-				cout << INDENT << BLUE << "YOU'RE IN MY 'OUSE, I WAS TOLD TO KEEP MY EYE ON YOU" << RESET_COLOUR << endl;
-				dialogue1 = true;
+			if (m_position.x == HALLWAY_NORTH.x && m_position.y == HALLWAY_NORTH.y) {
+				if (!dialogue1) {
+					cout << CYAN_ << "You ask about where you are and how to leave" << endl;
+					cout << INDENT << BLUE << "YOU'RE IN MY 'OUSE, I WAS TOLD TO KEEP MY EYE ON YOU" << RESET_COLOUR << endl;
+					dialogue1 = true;
+				}
+				else if (!dialogue2) {
+					cout << CYAN_ << "You ask if he could move out of the way" << endl;
+					cout << INDENT << BLUE << "NUH UH, I DON' MOVE FOR NUFFIN'" << RESET_COLOUR << endl;
+					cout << "The creatures stomach grumbles" << endl;
+					cout << INDENT << BLUE << "WELL, NUFFIN BUT SOME GOOD OL' GRUB! BWAH HAH HAH" << RESET_COLOUR << endl;
+					dialogue2 = true;
+				}
+				else{
+					cout << CYAN_ << "You ask what kind of food he likes" << endl;
+					cout << INDENT << BLUE << "I'S BEEN WANTIN' A NICE SOUP, BUT I'S A BAD COOK" << RESET_COLOUR << endl;
+				}
 			}
-			else if (!dialogue2) {
-				cout << CYAN_ << "You ask if he could move out of the way" << endl;
-				cout << INDENT << BLUE << "NUH UH, I DON' MOVE FOR NUFFIN'" << RESET_COLOUR << endl;
-				cout << "The creatures stomach grumbles" << endl;
-				cout << INDENT << BLUE << "WELL, NUFFIN BUT SOME GOOD OL' GRUB! BWAH HAH HAH" << RESET_COLOUR << endl;
-				dialogue2 = true;
-			}
-			else {
-				cout << CYAN_ << "You ask what kind of food he likes" << endl;
-				cout << INDENT << BLUE << "I'S BEEN WANTIN' A NICE SOUP, BUT I'S A BAD COOK" << RESET_COLOUR << endl;
-			}
+			else { cout << "there is nobody to talk to here" << endl; }
 			break;
 		case INVENTORY:
 			cout << "Inventory:" << endl;
